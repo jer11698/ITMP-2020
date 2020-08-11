@@ -24,6 +24,7 @@
     <h2><strong>สูตรคูณแม่ {{n}}</strong></h2>
     <h5>แม่ก่อนหน้า แม่ {{before_n}}</h5>
     <h4 v-for="i in r">{{n}} x {{i}} = {{x(i)}}</h4>
+    <h4>SUM: {{s}}</h4>
   </div>
 
   <script>
@@ -33,6 +34,7 @@
         n: 2,
         before_n: 1,
         row: 12,
+        sum: 0,
       },
       methods: {
         x: function (row) {
@@ -48,6 +50,13 @@
         r: function () {
           return parseInt(this.row)
         },
+        s: function () {
+          ans = 0
+          for(let i = 1; i <= this.r; i++){
+            ans += this.n * i
+          }
+          return ans
+        }
       },
     })
   </script>
