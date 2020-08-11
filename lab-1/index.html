@@ -6,16 +6,24 @@
   <link rel=stylesheet href="../src/reset.css">
   <link rel=stylesheet href="lab.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 </head>
 
 <body class="paper">
-  <div id="app">
-    <input type="number" v-model="n">
-    <input type="number" v-model="row">
+  <div id="app" class="container is-fluid">
+    <div class="columns">
+      <div class="is-6 column">
+        <input class="input" type="number" v-model="n">
+      </div>
+      <div class="is-6 column">
+        <input class="input" type="number" v-model="row">
+      </div>
+    </div>
+
     <div class="space"></div>
-    <h2>สูตรคูณแม่ {{n}}</h4>
-      <h5>แม่ก่อนหน้า แม่ {{before_n}}</h5>
-      <h4 v-for="i in r">{{n}} x {{i}} = {{x(i)}}</h4>
+    <h2><strong>สูตรคูณแม่ {{n}}</strong></h2>
+    <h5>แม่ก่อนหน้า แม่ {{before_n}}</h5>
+    <h4 v-for="i in r">{{n}} x {{i}} = {{x(i)}}</h4>
   </div>
 
   <script>
