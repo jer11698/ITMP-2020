@@ -21,7 +21,7 @@
 				'--row':row,
 				'--h':h,
 				'--l':l+'%',
-				}" :data-pick="i == pick"></a-dot>
+				}" :data-pick="i == pick" @click="check(i)"></a-dot>
 			</main>
 		</section>
 		<section id="canvas_footer">
@@ -42,17 +42,37 @@
 		let app = new Vue({
 			el: '#canvas',
 			data: {
-				row: 3, //จำนวนแถวที่จะมีในรอบนี้
+				row: 1, //จำนวนแถวที่จะมีในรอบนี้
 				h: 200, // hue ในรอบนี้
 				time: 20, //เวลาเริ่มต้น
 				score: 0, //คะแนนเริ่มต้น
 				pick: 1, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
 				l: 50,//ความสว่างของสีทั่วไปในรอบนี้
+				level: 1
 			},
 			methods: {
-
+				check: (e) => {
+					if (e == app.pick && app.time != 0) {
+						app.score++
+						app.level++
+						app.correct()
+					} else {
+						time = 'Time Out'
+					}
+					//เช็คก่อนว่าถูกไหม
+				},
+				correct: function () {
+					//เข้าด่านต่อไป
+					app.row = rand(2, app.level)
+					app.pick = rand(2, app.row * app.row)
+					app.h = rand(0, 360)
+					if (app.level % 5 == 0) {
+						app.time += 5
+					}
+				}
 			}
 		})
+		
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
 		document.querySelector('#canvas').style.setProperty('--picklight', picklight);
 
@@ -63,6 +83,7 @@
 				clearInterval(counter)
 			}
 		}, 1000);
+
 	</script>
 </body>
 
