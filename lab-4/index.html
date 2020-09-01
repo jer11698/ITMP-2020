@@ -67,12 +67,12 @@
 					app.pick = rand(2, app.row * app.row)
 					app.h = rand(0, 360)
 					if (app.level % 5 == 0) {
-						app.time += 5
+						app.time += 2
 					}
 				}
 			}
 		})
-		
+
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
 		document.querySelector('#canvas').style.setProperty('--picklight', picklight);
 
